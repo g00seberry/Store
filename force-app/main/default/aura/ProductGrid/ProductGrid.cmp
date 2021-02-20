@@ -1,0 +1,23 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute 
+                    name="products" 
+                    type="Product__c[]"
+                    />
+    
+    
+    <article class='slds-card'> 
+        <header class="slds-card__header">  
+             Товары:
+        </header>
+        
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <aura:iteration  items="{!v.products}" var="product">
+                    <div class="slds-col slds-size_6-of-12">
+                        <c:ProductCard product="{!product}"/>
+                    </div>	
+    			</aura:iteration>
+            </div>
+        </div>
+    </article>
+</aura:component>

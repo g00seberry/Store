@@ -1,0 +1,59 @@
+<aura:component controller="BankCardController">
+    <aura:attribute
+                    name="card"
+                    type="Map"
+                    default="{
+                             'CardNumber__c':'',
+                             'CardOwner__c':'',
+                             'ExpiryDate__c':'',
+                             }"/>
+    <aura:attribute
+                    name="expiryDateCache"
+                    type="String"
+                    default=""/>
+    
+    <aura:attribute
+                    name="success"
+                    type="String"/>
+    
+    <aura:attribute
+                    name="errors"
+                    type="String"/>
+    
+        <fieldset class="slds-box slds-theme_default slds-container_small">
+            <legend class="slds-text-heading_small slds-p-vertical_medium">
+                Добавить карточку
+            </legend>
+            
+            <form class="slds-form_stacked">
+                <lightning:input 
+                                 label="Номер карты" 
+                                 name="card_number"
+                                 value="{!v.card.CardNumber__c}" />
+                <lightning:input 
+                                 label="Имя владельца" 
+                                 name="card_owner"
+                                 value="{!v.card.CardOwner__c}" />
+
+                <lightning:input 
+                                 label="Срок" 
+                                 name="card_expiry_date"
+                                 onchange="{! c.completeMonth }"
+                                 value="{!v.card.ExpiryDate__c}" />
+                  
+                
+                <lightning:button 
+                                  label="Добавить карту"
+                                  class="slds-m-top_medium"
+                                  variant="brand"
+                                  onclick="{!c.addBankCard}"/>
+            </form>
+            
+            <aura:if isTrue="{! not(empty(v.errors)) }">
+                <c:Notification message="{!v.errors}" type="error"/>
+            </aura:if>
+            <aura:if isTrue="{! not(empty(v.success)) }">
+                <c:Notification message="{!v.success}" type="success"/>
+            </aura:if>
+        </fieldset>
+</aura:component>

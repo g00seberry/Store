@@ -1,0 +1,47 @@
+<aura:component controller="AuthController">
+    <aura:attribute
+                    name="user"
+                    type="Map"
+                    default="{
+                             Password__c:'',
+                             Login__c:'',
+                             Email__c:'',
+                             }"/>  
+    <aura:attribute
+                    name="errors"
+                    type="String"/>
+
+    <div aria-labelledby="userform">
+        <fieldset class="slds-box slds-theme_default slds-container_small">
+            <legend id="userform" class="slds-text-heading_small slds-p-vertical_medium">
+                Авторизация
+            </legend>
+            
+            <form class="slds-form_stacked">
+                <lightning:input 
+                                 aura:id="userform" 
+                                 label="Логин" 
+                                 name="user_login"
+                                 value="{!v.user.Login__c}" />
+
+                <lightning:input 
+                                 aura:id="userform" 
+                                 label="Пароль"
+                                 type="password"
+                                 name="user_pass"
+                                 value="{!v.user.Password__c}"
+                                 required="true" />
+
+                
+                <lightning:button 
+                                  label="Войти"
+                                  class="slds-m-top_medium"
+                                  variant="brand"
+                                  onclick="{!c.tryAuth}"/>
+            </form>
+            <aura:if isTrue="{! not(empty(v.errors))}">
+                <c:Notification message="{!v.errors}" type="error" />
+            </aura:if>
+        </fieldset>
+    </div>
+</aura:component>

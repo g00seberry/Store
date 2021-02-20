@@ -1,0 +1,33 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="pageNum" type="Integer" default="1"/>
+    <aura:attribute name="offset" type="Integer" default="0"/>
+    <aura:attribute name="limit" type="Integer" default="6"/>
+    
+    <aura:attribute name="productsCount" type="Integer" default="0"/>
+    
+	<article class='slds-card'>
+        <header class="slds-card__header">
+            <div>Страница: {!v.pageNum}</div>
+            <div>Всего товаров: {!v.productsCount}</div>
+        </header>
+        
+        
+        <div class="slds-card__body slds-card__body_inner">	
+            <lightning:buttonIcon
+                                  iconName="utility:back" 
+                                  variant="brand" 
+                                  alternativeText="Back" 
+                                  iconClass="dark"
+                                  onclick="{!c.prevPage}"
+                                  />
+            
+            <lightning:buttonIcon 
+                                  iconName="utility:back" 
+                                  variant="brand" 
+                                  alternativeText="Next" 
+                                  iconClass="dark flip-horizontal"
+                                  onclick="{!c.nextPage}"
+                                  />
+        </div>       
+    </article>
+</aura:component>

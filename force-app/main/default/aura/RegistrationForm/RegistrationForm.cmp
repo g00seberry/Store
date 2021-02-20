@@ -1,0 +1,69 @@
+<aura:component controller="CUserController">
+    <aura:attribute
+                    name="newUser"
+                    type="Map"
+                    default="{
+                             Password__c:'',
+                             Email__c:'',
+                             Login__c:'',
+                             }"/>  
+    <aura:attribute
+                    name="errors"
+                    type="String"/>
+    <aura:attribute
+                    name="passwordRepeat"
+                    type="String"
+                    default=""/>
+
+    <div aria-labelledby="newuserform">
+        <fieldset class="slds-box slds-theme_default slds-container_small">
+            <legend id="newuserform" class="slds-text-heading_small slds-p-vertical_medium">
+                Регистрация
+            </legend>
+            
+            <form class="slds-form_stacked">
+                <lightning:input 
+                                 aura:id="newuserform" 
+                                 label="Логин" 
+                                 name="user_login"
+                                 value="{!v.newUser.Login__c}" />
+
+                <lightning:input 
+                                 aura:id="newuserform" 
+                                 label="Email"
+                                 type="email"
+                                 name="user_mail" 
+                                 value="{!v.newUser.Email__c}"
+                                 required="true" />
+
+                <lightning:input 
+                                 aura:id="newuserform" 
+                                 label="Пароль"
+                                 onchange="{!c.checkPass}"
+                                 type="password"
+                                 name="user_pass"
+                                 value="{!v.newUser.Password__c}"
+                                 required="true" />
+
+                <lightning:input 
+                                 aura:id="newuserform" 
+                                 label="Повторите пароль" 
+                                 onchange="{!c.checkPass}"
+                                 type="password" 
+                                 name="user_pass_repeat" 
+                                 value="{!v.passwordRepeat}" 
+                                 required="true" />
+                
+                <lightning:button 
+                                  label="Регистрация"
+                                  class="slds-m-top_medium"
+                                  variant="brand"
+                                  onclick="{!c.tryRegister}"/>
+            </form>
+            
+            <aura:if isTrue="{! not(empty(v.errors))}">
+                <c:Notification message="{!v.errors}" type="error" />
+            </aura:if>      
+        </fieldset>
+    </div>
+</aura:component>

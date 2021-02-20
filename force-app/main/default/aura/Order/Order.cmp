@@ -1,0 +1,43 @@
+<aura:component controller="OrderController">
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:handler event="c:AddProductToOrderEvent" action="{!c.addProduct}" />
+  <aura:handler event="c:RemoveProductFromOrderEvent" action="{!c.removeProduct}"/>
+
+  <aura:attribute name="order" type="Order__c" />
+  <aura:attribute name="products" type="Object[]" />
+  <aura:attribute name="fullCost" type="Decimal" />
+
+  <aura:if isTrue="{! v.products.length != 0}">
+    <aura:iteration items="{!v.products}" var="product">
+      <c:ProductOrderItem
+        product="{! product.product }"
+        orderDetail="{! product.orderDetail }"
+      />
+
+      <aura:if isTrue="{! v.order.Status__c == 'Cart'}">
+        <c:RemoveProductFromCartController
+          orderDetail="{! product.orderDetail }"
+        />
+      </aura:if>
+    </aura:iteration>
+
+    <div class="slds-p-horisontal_medium">
+      <div class="slds-col slds-section-title slds-m-bottom_small">
+        Итого: <ui:outputCurrency value="{! v.fullCost }" />
+      </div>
+
+      <aura:if isTrue="{! v.order.Status__c == 'Cart'}">
+        <lightning:button
+          label="Оформить заказ"
+          class="slds-m-top_medium"
+          variant="brand"
+          onclick="{!c.openCheckout}"
+        />
+      </aura:if>
+    </div>
+
+    <aura:set attribute="else">
+      <c:Notification message="В заказе нет товаров" type="info" />
+    </aura:set>
+  </aura:if>
+</aura:component>

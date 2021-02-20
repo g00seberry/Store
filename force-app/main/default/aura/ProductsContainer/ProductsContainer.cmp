@@ -1,0 +1,51 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="ProductsController"> 
+    <aura:handler 
+                  name="init" 
+                  action="{!c.doInit}" 
+                  value="{!this}"
+                  /> 
+
+    <aura:handler
+                  event="c:UpdateFilterEvent"
+                  action="{!c.updateFilter}"
+                  />
+    
+    <aura:handler
+                  event="c:UpdatePagerParamsEvent"
+                  action="{!c.updatePagerParams}"
+                  />    
+
+    <aura:attribute
+        name="filterParams"
+        type="Map"
+        default="{
+                 'category':null,
+                 'priceMin':null,
+                 'priceMax':null,
+                 }"
+    />
+    
+    <aura:attribute 
+                    name="pagerParams" 
+                    type="Map"
+                    default="{
+                             'limit':6,
+                             'offset':0,
+                             }"
+                    />
+     <aura:attribute 
+                    name="products" 
+                    type="Product__c[]"
+                    />
+    <aura:attribute 
+                    name="productsCountNoPager" 
+                    type="Integer"
+                    />
+    
+    
+    <c:ProductGrid products = "{!v.products}"/> 
+    <c:ProductPager 
+                    productsCount="{!v.productsCountNoPager}" 
+                    limit="{! v.pagerParams.limit }" 
+                    offset="{! v.pagerParams.offset }" />
+</aura:component>

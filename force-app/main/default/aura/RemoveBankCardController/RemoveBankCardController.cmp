@@ -1,0 +1,16 @@
+<aura:component controller="BankCardController">
+  <aura:attribute name="cardId" type="String" />
+  <aura:attribute name="errors" type="String" />
+
+  <div class="slds-m-top--x-small slds-m-bottom_medium">
+    <lightning:button
+      label="Удалить карту"
+      variant="brand"
+      onclick="{!c.removeCard}"
+    />
+
+    <aura:if isTrue="{! not(empty(v.errors)) }">
+      <c:Notification message="{!v.errors}" type="error" />
+    </aura:if>
+  </div>
+</aura:component>

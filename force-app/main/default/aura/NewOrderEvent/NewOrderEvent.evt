@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION">
+    <aura:attribute name="order" type="Order__c"/>
+</aura:event>

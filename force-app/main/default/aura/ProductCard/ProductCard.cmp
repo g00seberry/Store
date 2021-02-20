@@ -1,0 +1,48 @@
+<aura:component controller="ProductsController">
+   <aura:handler 
+                  name="init" 
+                  action="{!c.doInit}" 
+                  value="{!this}"
+                  />
+    
+    <aura:attribute 
+                    name="product" 
+                    type="Product__c" 
+                    />
+    
+    <aura:attribute 
+                    name="productQuantity" 
+                    type="Integer" 
+                    default="1"
+                    />
+    
+    <aura:attribute 
+                    name="productAttachments" 
+                    type="String[]"
+                    />
+
+    <article class='slds-card slds-m-bottom_large'>
+        <div class='slds-box slds-box_small slds-p-around_none'>
+            
+            <header class="slds-card__header slds-grid">
+            	<div class="slds-text-heading_small">
+                	<p>{! v.product.ProductLabel__c}</p>
+            	</div>
+        	</header>
+        
+        	<div class="slds-card__body slds-card__body_inner slds-p-around_none"> 
+                <c:ProductImageSlider productAttachments="{!v.productAttachments}"/>
+            	<div class="product-card__product-description slds-p-horizontal_medium slds-p-bottom_medium slds-border_bottom">
+                	<p>{! v.product.ProductDescription__c}</p>
+            	</div>
+                <div class="slds-p-horizontal_medium slds-p-vertical_small">
+                    <ui:outputCurrency value="{!v.product.ProductPrice__c}" class="slds-section-title"/>
+                </div>
+        	</div>
+            
+            <div class="slds-card__footer slds-m-top_none">
+                <c:AddProductToCartController product="{! v.product }" />
+            </div>
+        </div> 
+    </article>
+</aura:component>

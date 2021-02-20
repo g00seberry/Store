@@ -1,0 +1,15 @@
+<aura:component controller="ProductsController">
+    <aura:attribute 
+                    name="productAttachments" 
+                    type="String[]"
+                    />
+    
+    <lightning:carousel disableAutoScroll="true">
+    	<aura:iteration  items="{!v.productAttachments}" var="attachment">
+     		<lightning:carouselImage
+        		src="{!'/sfc/servlet.shepherd/document/download/'+attachment.ContentDocumentId}">
+    		</lightning:carouselImage>
+    	</aura:iteration>
+    </lightning:carousel>
+    
+</aura:component>

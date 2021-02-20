@@ -1,0 +1,24 @@
+<aura:component controller="OrderController">
+	<aura:handler 
+                  event="c:UserIsAuthEvent" 
+                  action="{!c.doInit}"/>
+    
+    <aura:attribute 
+                    name="orders" 
+                    type="Order__c[]" />
+    
+    <aura:handler 
+                  event="c:NewOrderEvent" 
+                  action="{!c.addOrder}" />
+    
+    <aura:if isTrue="{! v.orders.length != 0}">
+        <aura:iteration items="{! v.orders }" var="order">
+            <c:OrderListItem order="{! order }" />  
+        </aura:iteration>
+        
+        <aura:set attribute="else">
+            <c:Notification message="Список заказов пуст." type="info" />
+        </aura:set>
+    </aura:if>
+    
+</aura:component>

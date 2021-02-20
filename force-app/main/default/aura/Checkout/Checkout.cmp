@@ -1,0 +1,6 @@
+<aura:component controller="BankCardController">
+  <aura:attribute name="user" type="Object" default="null" />
+
+  <c:UserProfile user="{! v.user}" heading="Проверьте данные" />
+  <c:BankCardPickList />
+</aura:component>

@@ -1,0 +1,56 @@
+<aura:component >
+    <aura:attribute name="isAuth" type="Boolean" default="false"/>
+    
+	<article class="slds-card">
+        <div class="slds-card__body slds-card__body_inner slds-grid slds-gutters">
+            <aura:if isTrue="{! !v.isAuth }">
+            	<div class="slds-col">
+                	<lightning:button 
+                                  	label="Вход"
+                                  	class="slds-m-top_medium"
+                                  	variant="brand"
+                                  	onclick="{!c.openLoginModal}"/>
+            	</div>
+                
+            	<div class="slds-col">
+                	<lightning:button 
+                                  	label="Регистрация"
+                                  	class="slds-m-top_medium"
+                                  	variant="brand"
+                                  	onclick="{!c.openRegisterModal}"/>
+            	</div>          
+            </aura:if>
+            
+            <aura:if isTrue="{! v.isAuth }">
+                <div class="slds-col">
+                	<lightning:button 
+                                  	label="Выйти"
+                                  	class="slds-m-top_medium"
+                                  	variant="brand"
+                                  	onclick="{!c.openLogoutModal}"/>
+            	</div>
+                <div class="slds-col">
+                	<lightning:button 
+                                  	label="Профиль"
+                                  	class="slds-m-top_medium"
+                                  	variant="brand"
+                                  	onclick="{!c.openProfileModal}"/>
+            	</div>
+                <div class="slds-col">
+                	<lightning:button 
+                                  	label="Корзина"
+                                  	class="slds-m-top_medium"
+                                  	variant="brand"
+                                  	onclick="{!c.openCartModal}"/>
+            	</div>
+                <div class="slds-col">
+                	<lightning:button 
+                                  	label="Заказы"
+                                  	class="slds-m-top_medium"
+                                  	variant="brand"
+                                  	onclick="{!c.openOrderListModal}"/>
+            	</div>
+            </aura:if>
+        </div>
+    </article>
+</aura:component>

@@ -1,0 +1,16 @@
+<aura:component controller="OrderController">
+  <aura:attribute name="orderDetail" type="OrderDetail__c" />
+  <aura:attribute name="errors" type="String" />
+
+  <div class="slds-m-top--x-small slds-m-bottom_medium">
+    <lightning:button
+      label="Удалить из корзины"
+      variant="destructive"
+      onclick="{!c.removeProductFromCart}"
+    />
+
+    <aura:if isTrue="{! not(empty(v.errors)) }">
+      <c:Notification message="{!v.errors}" type="error" />
+    </aura:if>
+  </div>
+</aura:component>

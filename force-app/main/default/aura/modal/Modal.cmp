@@ -1,0 +1,46 @@
+<aura:component>
+    <aura:attribute name="id" type="String" default="" />
+    
+    <aura:attribute name="isOpen" type="boolean" default="false" />
+    <aura:attribute name="fitContent" type="boolean" default="false" />
+    
+    <aura:attribute name="content" type="Aura.Component[]" access="global" />
+    
+    <aura:handler 
+                  event="c:CloseModalEvent"
+                  action="{!c.closeModal}"
+                  />
+    
+    <aura:handler 
+                  event="c:OpenModalEvent"
+                  action="{!c.openModal}"
+                  />
+    
+            <aura:if isTrue="{!v.isOpen}">
+                <section 
+                         role="dialog" 
+                         tabindex="-1" 
+                         aria-modal="true" 
+                         class="slds-modal slds-fade-in-open">
+                    
+                    <div 
+                         class="{! v.fitContent?'slds-modal__container width-fit-content':'slds-modal__container' }"
+                         >
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <lightning:buttonIcon 
+                                                  iconName="utility:close" 
+                                                  onclick="{! c.closeModal }" 
+                                                  alternativeText="close" 
+                                                  variant="bare-inverse" 
+                                                  class="slds-modal__close" />
+                        </header>
+                        <div 
+                             class="slds-modal__content slds-p-around_medium" 
+                             id="modal-content-id-1">
+                            {!v.content}
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+</aura:component>

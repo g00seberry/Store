@@ -1,0 +1,11 @@
+<aura:component>
+    <aura:attribute name="message" type="String" />
+    <aura:attribute name="type" type="String" />
+
+    <div class="{! 'slds-m-top_x-small slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_'+ v.type}" 
+         role="alert">
+        <h2>
+            {! v.message}
+        </h2>
+    </div>
+</aura:component>

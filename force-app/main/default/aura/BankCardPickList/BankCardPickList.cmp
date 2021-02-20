@@ -1,0 +1,30 @@
+<aura:component controller="BankCardController" >
+    <aura:handler 
+                  event="c:UserIsAuthEvent" 
+                  action="{!c.doInit}"/>
+    <aura:handler 
+                  event="c:AddBankCardEvent"
+                  action="{!c.addBankCard}" 
+                  />
+    <aura:handler 
+                  event="c:RemoveBankCardEvent"
+                  action="{!c.removeBankCard}"
+                  />
+    
+    <aura:attribute 
+                    name="cards" 
+                    type="BankCard__c[]"
+                    />
+    
+    <fieldset class="slds-box slds-theme_default slds-container_small">
+    
+        <legend class="slds-text-heading_small slds-p-vertical_medium">
+            Выберите карту для оплаты
+        </legend>
+        
+    	<aura:iteration  items="{!v.cards}" var="card">
+        	<c:BankCardListItem card="{!card}" />
+            <c:CreateOrderController cardId="{! card.Id }" />
+    	</aura:iteration>
+    </fieldset>
+</aura:component>

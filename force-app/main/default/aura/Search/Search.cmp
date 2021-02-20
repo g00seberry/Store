@@ -1,0 +1,38 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="SearchController">
+    <aura:attribute 
+                    name="searchString" 
+                    type="String"
+                    />
+    <aura:attribute 
+                    name="timerId" 
+                    type="String"
+                    />
+	<aura:attribute 
+                    name="searchResult" 
+                    type="Object[]"
+                    />
+    <aura:attribute 
+                    name="disabledPicklist" 
+                    type="Boolean"
+                    />
+    
+	<div class="slds-card">
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="search-container">
+                <lightning:input 
+                             	name="search" 
+                             	value="{!v.searchString}"
+                             	label="Поиск:" 
+                             	placeholder="начните вводить..."
+                             	onchange="{!c.trySearchSend}"
+                                onfocus="{!c.showPicklist}"
+                                 />
+            
+            	<c:SearchPicklist 
+                                  disabled="{!v.disabledPicklist}"
+                                  searchList="{!v.searchResult}"
+                                  />
+            </div>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,17 @@
+<aura:component>
+  <aura:handler
+    event="c:SelectSearchCategoryEvent"
+    action="{!c.selectCategory}"
+  />
+
+  <aura:attribute name="searchList" type="Object[]" />
+  <aura:attribute name="disabled" type="Boolean" />
+
+  <ul
+    class="{!v.disabled?'slds-has-dividers_around-space search__picklist search__picklist--hide':'slds-has-dividers_around-space search__picklist'}"
+  >
+    <aura:iteration items="{!v.searchList}" var="item">
+      <c:SearchPicklistItem searchResultItem="{!item}" />
+    </aura:iteration>
+  </ul>
+</aura:component>

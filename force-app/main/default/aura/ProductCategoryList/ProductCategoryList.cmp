@@ -1,0 +1,54 @@
+<aura:component implements="flexipage:availableForAllPageTypes"  controller="ProductCategoryController" >
+    <aura:registerEvent 
+                        name="updateFilterEvent" 
+                        type="c:UpdateFilterEvent"
+                        />
+    
+    <aura:handler 
+                  name="init" 
+                  action="{!c.doInit}" 
+                  value="{!this}"
+                  />
+    
+    <aura:handler 
+                  event="c:CategorySelectEvent"
+                  action="{!c.selectCategory}"
+                  />
+    
+    <aura:attribute 
+                    name="productCategories" 
+                    type="ProductCategory__c[]"
+                    />
+    
+     <aura:attribute 
+                    name="selectedCategories" 
+                    type="ProductCategory__c[]"
+                    default="[]"
+                    />
+    
+    <article class='slds-card'>
+        <header class="slds-card__header slds-grid">
+            <div class="slds-col slds-size_2-of-12">
+                <lightning:buttonIcon 
+                                      onclick="{!c.toPrevCategories}"
+                                      iconName="utility:back" 
+                                      variant="brand" 
+                                      alternativeText="Back" 
+                                      iconClass="dark"
+                                      />
+            </div>
+            <div class="slds-col slds-align_absolute-center">
+                  Категории:
+            </div>
+        </header>
+        
+        <div class="slds-card__body slds-card__body_inner">
+            <ul class="slds-has-dividers_around-space">
+        		<aura:iteration  items="{!v.productCategories}" var="category">
+                    <c:ProductCategoryListItem category="{!category}"/>
+    			</aura:iteration>
+            </ul>
+        </div>
+    </article>
+    
+</aura:component>

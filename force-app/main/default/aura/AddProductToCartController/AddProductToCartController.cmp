@@ -1,0 +1,41 @@
+<aura:component controller="OrderController">
+    <aura:attribute 
+                    name="product" 
+                    type="Product__c" />
+
+    <aura:attribute 
+                    name="productQuantity" 
+                    type="Integer" 
+                    default="1" />
+    
+    <aura:attribute
+                    name="errors"
+                    type="String" />
+    <aura:attribute
+                    name="success"
+                    type="String" />
+    
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_6-of-12">
+            <lightning:input 
+                             
+                             label="{! 'кол-во: (' + v.product.InStock__c+')'}" 
+                             type="number" 
+                             value="{!v.productQuantity}" 
+                             required="true" />
+        </div>
+        <div class="slds-col slds-size_6-of-12 slds-align-bottom">
+            <button class="slds-button slds-button_success" onclick="{!c.addToCart}">
+                в корзину
+            </button>
+        </div>
+    </div> 
+    
+    <aura:if isTrue="{! not(empty(v.errors)) }">
+        <c:Notification message="{!v.errors}" type="error"/>
+    </aura:if>
+    <aura:if isTrue="{! not(empty(v.success)) }">
+        <c:Notification message="{!v.success + ': ' + v.productQuantity}" type="success"/>
+    </aura:if>
+</aura:component>

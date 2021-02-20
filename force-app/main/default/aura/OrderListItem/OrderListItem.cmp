@@ -1,0 +1,27 @@
+<aura:component>
+  <aura:attribute name="order" type="Order__c" />
+  <aura:attribute name="isOpen" type="Boolean" default="false" />
+    
+  <div
+    class="{!'slds-box slds-box_small slds-m-bottom_small order-list_item' + (v.order.Status__c == 'Closed'? ' slds-theme_success': ' slds-theme_info') }"
+    onclick="{! c.toggle}"
+  >
+    <div class="slds-text-heading_small slds-m-bottom_small">
+      {! v.order.Status__c == 'Closed'? 'Закрыт': 'В работе'}
+    </div>
+    <dl class="slds-dl_horizontal">
+      <dt class="slds-dl_horizontal__label">ID:</dt>
+      <dd class="slds-dl_horizontal__detail">{! v.order.Id }</dd>
+
+      <dt class="slds-dl_horizontal__label">Дата:</dt>
+      <dd class="slds-dl_horizontal__detail"
+        >{! v.order.StartProcessTime__c }</dd
+      >
+    </dl>
+  </div>
+    
+  <aura:if isTrue="{! v.isOpen }">
+	<c:Order order="{! v.order }" />
+  </aura:if>
+
+</aura:component>

@@ -1,0 +1,31 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="updateFilterEvent" type="c:UpdateFilterEvent" />
+
+    <aura:attribute name="priceMin" type="currency" />
+    <aura:attribute name="priceMax" type="currency" />
+
+    <article class="slds-card">
+        <div class="slds-card__body slds-card__body_inner slds-grid slds-gutters">
+            <div class="slds-col">
+                <lightning:input 
+                                 type="number" 
+                                 formatter="currency" 
+                                 label="Цена от:" 
+                                 name="price_min" 
+                                 value="{!v.priceMin}" 
+                                 onblur="{!c.updatePriceMin}" 
+                                 />
+            </div>
+            <div class="slds-col">
+                <lightning:input 
+                                 type="number" 
+                                 formatter="currency" 
+                                 label="Цена до:" 
+                                 name="price_max" 
+                                 value="{!v.priceMax}" 
+                                 onblur="{!c.updatePriceMax}" 
+                                 />
+            </div>
+        </div>
+    </article>
+</aura:component>

@@ -1,0 +1,6 @@
+<aura:event type="APPLICATION" >
+        <aura:attribute
+                    name="user"
+                    type="Object"
+                    default="null"/> 
+</aura:event>

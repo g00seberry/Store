@@ -1,0 +1,9 @@
+<aura:component controller="OrderController">
+  <aura:handler event="c:UserIsAuthEvent" action="{!c.doInit}" />
+
+  <aura:attribute name="cart" type="Order__c" />
+
+  <aura:if isTrue="{! v.cart != null }">
+    <c:Order order="{! v.cart }" />
+  </aura:if>
+</aura:component>

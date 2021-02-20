@@ -1,0 +1,18 @@
+<aura:component >
+    <aura:registerEvent 
+                        name="categorySelectEvent" 
+                        type="c:CategorySelectEvent"
+                        />
+    
+    <aura:attribute 
+                    name='category' 
+                    type="ProductCategory__c"
+                    />
+    
+    <li 
+        class="slds-item product-category-list__item"
+        onclick="{!c.selectCategory}"
+        >
+        {!v.category.Name}
+    </li>
+</aura:component>

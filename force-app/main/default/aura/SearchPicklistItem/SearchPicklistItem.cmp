@@ -1,0 +1,7 @@
+<aura:component>
+  <aura:attribute name="searchResultItem" type="Object" />
+    
+  <li class="slds-item search-picklist__item" onclick="{!c.selectCategory}">
+    {!v.searchResultItem.itemLabel + '->' + v.searchResultItem.searchResutItem.Name}
+  </li>
+</aura:component>
