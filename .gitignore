@@ -6,6 +6,9 @@
 .idea/
 IlluminatedCloud/
 
+# npm
+package-lock.json
+
 # Salesforce cache
 .sfdx/
 .localdevserver/
