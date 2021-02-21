@@ -7,17 +7,17 @@
 //UserIsAuthEvent
 
 window._storeUtil = (function() {
-    return { 
-        fire: function(eventName) {
-          $A.get('e.c:' + eventName).fire();
-        },
-        
-        fireWithParams: function(eventName, params) {
-          $A.get('e.c:' + eventName)
-            .setParams(params)
-            .fire();
-        }
-    };
+  return {
+    fire: function(eventName) {
+      $A.get("e.c:" + eventName).fire();
+    },
+
+    fireWithParams: function(eventName, params) {
+      $A.get("e.c:" + eventName)
+        .setParams(params)
+        .fire();
+    }
+  };
 }());
 
 
