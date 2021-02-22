@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#FD8600</headerColor>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>Store</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Store</label>
+    <navType>Standard</navType>
+    <tabs>BankCard__c</tabs>
+    <tabs>CategoryToProduct__c</tabs>
+    <tabs>CUser__c</tabs>
+    <tabs>OrderDetail__c</tabs>
+    <tabs>Product__c</tabs>
+    <tabs>Order__c</tabs>
+    <tabs>ProductCategory__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Store_UtilityBar</utilityBar>
+</CustomApplication>
