@@ -37,12 +37,8 @@ public with sharing class CUserController {
     @AuraEnabled
     public static void ResetPassword(String oldPassword, String newPassword, String passwordRepeat){
         CUser__c user = AuthController.CheckAuthUser();
-        
-        user.Password__c = newPassword;
-        ValidateResetPassword(user, passwordRepeat);
-        
-        user.Password__c = Util.EncryptString(user.Password__c);
-        
+        ValidateResetPassword(user, oldPassword, newPassword, passwordRepeat);
+        user.Password__c = Util.EncryptString(newPassword);
         update user;
     }
     
@@ -92,13 +88,17 @@ public with sharing class CUserController {
         }
        
     }
-    private static void ValidateResetPassword(CUser__c user, String repeatPass){
+    private static void ValidateResetPassword(CUser__c user, String oldPassword, String newPassword, String repeatPass){
         
-        if(user.Password__c != repeatPass){
+        if(user.Password__c != Util.EncryptString(oldPassword)){
+            throw new AuraHandledException('Неверный пароль');
+        }
+
+        if(newPassword != repeatPass){
             throw new AuraHandledException('Пароли не совпадают');
         }
         
-        if( user.Password__c.length() < 8){
+        if( newPassword.length() < 8){
             throw new AuraHandledException('Пароль должен быть >= 8 символов');
         }
     }

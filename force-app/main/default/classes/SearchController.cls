@@ -17,8 +17,8 @@ public with sharing class SearchController {
         searchString = '*'+searchString+'*';
 		List<List<sObject>> searchList = [FIND :searchString IN ALL FIELDS 
                                           RETURNING 
-                                          ProductCategory__c(Name,ProductCategoryParent__c,Id)]; 
-        
+                                          ProductCategory__c(Name, ProductCategoryParent__c, Id)]; 
+                                          
         ProductCategory__c[] searchProductCategory = (ProductCategory__c[])searchList[0];
 
         for (ProductCategory__c c : searchProductCategory) {

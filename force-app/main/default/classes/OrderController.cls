@@ -66,9 +66,6 @@ public with sharing class OrderController {
         return cart;
     }
     
-
-    
-    
     @AuraEnabled
     public static Order__c GetCart(){
         CUser__c user = AuthController.CheckAuthUser();

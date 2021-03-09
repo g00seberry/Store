@@ -22,7 +22,11 @@ public with sharing class BankCardController {
         AuthController.CheckAuthUser();
         
         try {
-            BankCard__c card = [SELECT Id FROM BankCard__c WHERE Id =: cardId];
+            BankCard__c card = [SELECT Id, 
+                                CardNumber__c,
+                                CardOwner__c,
+                                ExpiryDate__c,
+                                Balance__c FROM BankCard__c WHERE Id =: cardId];
         	delete card;
             return card;
     	}

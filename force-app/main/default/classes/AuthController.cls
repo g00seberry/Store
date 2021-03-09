@@ -2,8 +2,15 @@ public with sharing class AuthController {
     
     @AuraEnabled
     public static CUser__c AuthUser(String userRequest){ 
-        CUser__c user = (CUser__c)JSON.deserialize(userRequest, CUser__c.class);
+        CUser__c user = null;
         
+        try {
+        	user = (CUser__c)JSON.deserialize(userRequest, CUser__c.class);
+    	}
+    	catch (Exception e) {
+        	throw new AuraHandledException('System error: user is null.'); 
+    	}
+
         ValidateAuth(user);
         
  		CUser__c currentUser = [SELECT 
@@ -13,7 +20,7 @@ public with sharing class AuthController {
                                 FROM CUser__c 
                                 WHERE Login__c = :user.Login__c 
                                 LIMIT 1];
-        
+
         CreateToken(currentUser);
         
         return currentUser;

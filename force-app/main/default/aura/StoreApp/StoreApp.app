@@ -18,7 +18,6 @@
                   name="isAuth" 
                   type="Boolean" 
                   default="false" />
-
   <div class="slds-grid slds-gutters">
     <div class="slds-col slds-size_8-of-12">
       <c:Search /> 
